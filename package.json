@@ -1,0 +1,26 @@
+{
+  "name": "audit-bot",
+  "version": "1.0.0",
+  "main": "build/index.js",
+  "type": "module",
+  "scripts": {
+    "build": "tsc",
+    "start": "tsc && node build/index.js",
+    "dev": "nodemon src/index.ts"
+  },
+  "author": "SmartMainnet",
+  "license": "MIT",
+  "dependencies": {
+    "@grammyjs/i18n": "^1.0.1",
+    "@grammyjs/ratelimiter": "^1.2.0",
+    "axios": "^1.6.1",
+    "dotenv": "^16.3.1",
+    "ethers": "^6.8.1",
+    "grammy": "^1.19.2",
+    "mongoose": "^8.0.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1",
+    "typescript": "^5.2.2"
+  }
+}
