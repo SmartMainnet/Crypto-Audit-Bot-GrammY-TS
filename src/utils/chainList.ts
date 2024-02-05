@@ -1,7 +1,7 @@
 export const chainList = [
   {
     id: 1,
-    name: 'ETH',
+    name: 'Ethereum',
     coin: 'ETH',
     scan: 'https://etherscan.io/token/',
   },
@@ -28,5 +28,5 @@ export const chainList = [
     name: 'Fantom',
     coin: 'FTM',
     scan: 'https://ftmscan.com/token/',
-  }
+  },
 ]

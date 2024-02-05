@@ -1,2 +1,2 @@
-export * from './createUser.method.js'
-export * from './newCall.method.js'
+export * from './createUser.js'
+export * from './newCall.js'

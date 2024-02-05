@@ -1,17 +1,12 @@
 import axios from 'axios'
 
-import { newCall } from '../database/methods/index.js'
-import { auditInlineKeyboard } from '../keyboards/inline_keyboard/index.js'
-import { ContextType } from '../types/index.js'
+import { ContextType, IChain } from '../types/index.js'
 
-export const audit = async (ctx: ContextType) => {
+export const audit = async (ctx: ContextType, chain: IChain, address: string) => {
   try {
-    const msgWait = ctx.config.msgWait
-    const address = ctx.config.address
-    const chain = ctx.config.chain
-    const user = ctx.config.user
-
-    const resGoPlus = await axios.get(`https://api.gopluslabs.io/api/v1/token_security/${chain.id}?contract_addresses=${address}`)
+    const resGoPlus = await axios.get(
+      `https://api.gopluslabs.io/api/v1/token_security/${chain.id}?contract_addresses=${address}`
+    )
     const res = resGoPlus.data.result[address]
 
     const buyTaxValue = res.buy_tax * 100
@@ -20,8 +15,12 @@ export const audit = async (ctx: ContextType) => {
     const buyTax = buyTaxValue.toFixed(0) + (buyTaxValue > 15 ? `% ⚠️` : '%')
     const sellTax = sellTaxValue.toFixed(0) + (sellTaxValue > 15 ? `% ⚠️` : '%')
 
-    const totalSupply = String(Math.floor(res['total_supply'])).replace(/(\d)(?=(\d\d\d)+([^\d]|$))/g, '$1,')
-    const isRenounced = res.owner_address === '0x000000000000000000000000000000000000dead' || res.owner_address === '0x0000000000000000000000000000000000000000'
+    const roundedTotalSupply = String(Math.floor(res['total_supply']))
+    const regExp = /(\d)(?=(\d\d\d)+([^\d]|$))/g
+    const totalSupply = roundedTotalSupply.replace(regExp, '$1,')
+    const isRenounced =
+      res.owner_address === '0x000000000000000000000000000000000000dead' ||
+      res.owner_address === '0x0000000000000000000000000000000000000000'
 
     const token = {
       name: res.token_name,
@@ -45,18 +44,7 @@ export const audit = async (ctx: ContextType) => {
       is_whitelisted: +res.is_whitelisted ? '⚠️ *Yes*' : '✅ *No*',
     }
 
-    ctx.api.editMessageText(
-      msgWait.chat.id,
-      msgWait.message_id,
-      ctx.t('audit_result', token),
-      {
-        parse_mode: 'Markdown',
-        disable_web_page_preview: true,
-        reply_markup: auditInlineKeyboard(chain, address)
-      }
-    )
-
-    newCall(user.id, address)
+    return ctx.t('audit_result', token)
   } catch (e) {
     console.log(e)
   }

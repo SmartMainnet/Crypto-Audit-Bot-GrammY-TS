@@ -8,9 +8,9 @@
     "allowSyntheticDefaultImports": true,
     "moduleResolution": "NodeNext",
     "module": "NodeNext",
-    "target": "ES2020",
+    "target": "ESNext",
     "outDir": "build",
-    "rootDir": "src",
+    "rootDir": "src"
   },
   "include": ["src/**/*"],
   "exclude": ["node_modules"],

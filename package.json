@@ -20,7 +20,9 @@
     "mongoose": "^8.0.0"
   },
   "devDependencies": {
+    "@types/node": "^20.11.16",
     "nodemon": "^3.0.1",
+    "ts-node": "^10.9.2",
     "typescript": "^5.2.2"
   }
 }

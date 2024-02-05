@@ -1,2 +1,2 @@
-export * from './checkMember.middleware.js'
-export * from './checkChains.middleware.js'
+export * from './checkMember.js'
+export * from './checkChains.js'

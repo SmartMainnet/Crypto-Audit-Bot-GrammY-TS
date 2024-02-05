@@ -7,36 +7,40 @@ import { ContextType } from '../../types/index.js'
 export const checkChains = async (ctx: ContextType, next: NextFunction) => {
   try {
     const msgWait = await ctx.reply(ctx.t('checking'))
+
     const user = ctx.update.message!.from
     const address = ctx.update.message!.text!.toLowerCase()
-    const chains = (await getChains(address)).filter(chain => chain.status)
+
+    const chains = await getChains(address)
 
     if (chains.length === 1) {
       ctx.config = {
         msgWait: msgWait,
         user: user,
         address: address,
-        chain: chains[0]
+        chain: chains[0],
       }
-      ctx.api.editMessageText(
+
+      await ctx.api.editMessageText(
         msgWait.chat.id,
         msgWait.message_id,
         ctx.t('audit')
       )
+
       next()
-    } else if(chains.length > 1) {
-      ctx.api.editMessageText(
+    } else if (chains.length > 1) {
+      await ctx.api.editMessageText(
         msgWait.chat.id,
         msgWait.message_id,
         ctx.t('chain_selection'),
         {
           parse_mode: 'Markdown',
           disable_web_page_preview: true,
-          reply_markup: checkChainsInlineKeyboard(chains, address)
+          reply_markup: checkChainsInlineKeyboard(chains, address),
         }
       )
     } else {
-      ctx.reply(ctx.t('only_contracts'))
+      await ctx.reply(ctx.t('only_contracts'))
     }
   } catch (e) {
     console.log(e)

@@ -1,4 +1,5 @@
 import { InlineKeyboard } from 'grammy'
+
 import { IChain } from '../../types/index.js'
 
 export const checkChainsInlineKeyboard = (chains: IChain[], address: string) => {

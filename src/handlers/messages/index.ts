@@ -1,2 +1,2 @@
-export * from './address.message.js'
-export * from './text.message.js'
+export * from './addressMessage.js'
+export * from './textMessage.js'
