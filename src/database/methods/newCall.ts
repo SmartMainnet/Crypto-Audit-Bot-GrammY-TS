@@ -1,10 +1,15 @@
+import { User } from 'grammy/types'
+
+import { createUser } from './index.js'
 import { UsersModel } from '../models/index.js'
 import { IChain } from '../../types/index.js'
 
-export const newCall = async (id: number, address: string, chain: IChain) => {
+export const newCall = async (user: User, address: string, chain: IChain) => {
   try {
+    await createUser(user)
+
     return await UsersModel.findOneAndUpdate(
-      { id },
+      { user_id: user.id },
       {
         $push: {
           calls: {

@@ -31,7 +31,7 @@ export const selectChainCallback = async (ctx: ContextType) => {
       }
     )
 
-    await newCall(user.id, address, chain)
+    await newCall(user, address, chain)
   } catch (e) {
     console.log(e)
   }

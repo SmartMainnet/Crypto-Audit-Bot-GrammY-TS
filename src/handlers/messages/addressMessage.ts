@@ -17,5 +17,5 @@ export const addressMessage = async (ctx: ContextType) => {
     reply_markup: auditInlineKeyboard(chain, address),
   })
 
-  await newCall(user.id, address, chain)
+  await newCall(user, address, chain)
 }
