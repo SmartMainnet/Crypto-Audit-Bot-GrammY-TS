@@ -13,7 +13,7 @@ export const addressMessage = async (ctx: ContextType) => {
 
   await ctx.api.editMessageText(msgWait.chat.id, msgWait.message_id, auditResult!, {
     parse_mode: 'Markdown',
-    disable_web_page_preview: true,
+    link_preview_options: { is_disabled: true },
     reply_markup: auditInlineKeyboard(chain, address),
   })
 

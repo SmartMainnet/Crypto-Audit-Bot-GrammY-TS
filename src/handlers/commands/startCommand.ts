@@ -8,7 +8,7 @@ export const startCommand = async (ctx: ContextType) => {
     const user = ctx.update.message!.from
 
     await ctx.reply(ctx.t('start', { first_name: ctx.me.first_name }))
-    await ctx.reply(ctx.t('info'), { disable_web_page_preview: true })
+    await ctx.reply(ctx.t('info'), { link_preview_options: { is_disabled: true } })
 
     await ctx.replyWithPhoto(new InputFile('./src/images/Example.png'), {
       caption: ctx.t('help'),
