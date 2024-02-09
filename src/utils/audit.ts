@@ -2,10 +2,12 @@ import axios from 'axios'
 
 import { ContextType, IChain } from '../types/index.js'
 
+const { API_URL } = process.env
+
 export const audit = async (ctx: ContextType, chain: IChain, address: string) => {
   try {
     const resGoPlus = await axios.get(
-      `https://api.gopluslabs.io/api/v1/token_security/${chain.id}?contract_addresses=${address}`
+      `${API_URL}/token_security/${chain.id}?contract_addresses=${address}`
     )
     const res = resGoPlus.data.result[address]
 
