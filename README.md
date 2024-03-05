@@ -35,7 +35,13 @@
 npm install
 ```
 
-### Run the project
+### Build project
+
+```
+npm build
+```
+
+### Run bot
 
 ```
 npm start
