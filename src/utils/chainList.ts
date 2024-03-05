@@ -29,4 +29,10 @@ export const chainList = [
     coin: 'FTM',
     scan: 'https://ftmscan.com/token/',
   },
+  {
+    id: 81457,
+    name: 'Blast',
+    coin: 'BLAST',
+    scan: 'https://blastscan.io/token/',
+  },
 ]
