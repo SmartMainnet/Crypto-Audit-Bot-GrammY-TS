@@ -29,19 +29,29 @@
 
 - Add Telegram channel or group username to `CHANNEL` ( if necessary )
 
+---
+
 ### Installing dependencies
 
 ```
 npm install
 ```
 
-### Build project
+---
+
+### Run bot in development mode
+
+```
+npm run dev
+```
+
+---
+
+### Run bot in production mode
 
 ```
 npm build
 ```
-
-### Run bot
 
 ```
 npm start
