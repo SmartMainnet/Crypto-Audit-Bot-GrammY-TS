@@ -15,6 +15,13 @@ const { BOT_TOKEN } = process.env
 
 const bot = new Bot<ContextType>(BOT_TOKEN!)
 
+// set commands
+await bot.api.setMyCommands([
+  { command: 'start', description: 'Restart bot' },
+  { command: 'info', description: 'Show info' },
+  { command: 'help', description: 'Show help' },
+])
+
 // plugins
 bot.use(i18nMiddleware)
 bot.use(limitMiddleware)
